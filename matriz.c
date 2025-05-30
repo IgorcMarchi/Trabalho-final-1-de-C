@@ -21,19 +21,19 @@ typedef struct matriz{
 void menu() {
     printf("--------------------------------------------------\n");
     printf ("Menu : \n");
-    printf ("Criar Matriz\n");
+    printf ("Criar Matriz\n"); //Fizemo
     printf ("Inserir Elemento\n");
     printf ("Remover Elemento\n");
     printf ("Inserir dados em um valor especifico\n");
     printf ("COnsultar valor especifico\n");
     printf ("Buscar um valor qual quer:\n ");
     printf ("Imprimir Valor dos 4 vizinhos de (x, y):\n ");
-    printf ("Liberar matriz: \n");
+    printf ("Liberar matriz: \n"); //Fizemos
     printf ("Sair..\n");
     printf("--------------------------------------------------\n");
 }
 
-
+//Função para criar matriz
 
 Mat *cria_matriz(int linhas, int colunas) {
     Mat *mat = (Mat*)malloc(sizeof(Mat));
@@ -85,7 +85,7 @@ Mat *cria_matriz(int linhas, int colunas) {
     return mat;
 }
 
-
+//Função para liberar memoria da matriz
 
 void liberar_matriz(Mat *mat) {
     if (mat == NULL){
@@ -101,4 +101,15 @@ void liberar_matriz(Mat *mat) {
 
     free(mat); // Libere a struct Mat
     printf("Matriz liberada com sucesso!\n");
+}
+
+
+// Insere um valor na posição (linha, coluna) da matriz
+int inserir_elemento(Mat *mat, int linha, int coluna, int valor) {
+    if (mat == NULL) return 0;
+    if (linha < 0 || linha >= mat->linha || coluna < 0 || coluna >= mat->coluna) return 0;
+
+    int idx = linha * mat->coluna + coluna;
+    mat->elementos[idx]->valor = valor;
+    return 1; // Sucesso
 }

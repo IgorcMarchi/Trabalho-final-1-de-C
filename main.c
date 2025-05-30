@@ -24,10 +24,16 @@ int opcao;
                 printf("Matriz criada com sucesso!\n");
                 break;
 
-            case 2:
-                printf("Opcao 2 selecionada.\n");
+            case 2: {
+                int linha, coluna, valor;
+                printf("Fale a posicao (linha e coluna) do elemento: ");
+                scanf("%d %d", &linha, &coluna);
+                printf ("\nAgora digite o valor do elemento: ");
+                scanf("%d", &valor);
+                inserir_elemento(mat, linha, coluna, valor);
+                printf("Elemento inserido com sucesso!\n");
                 break;
-
+            }
             case 3:
                 printf("Opcao 3 selecionada.\n");
                 break;
@@ -51,7 +57,6 @@ int opcao;
             case 8:
                 liberar_matriz(mat);
                 mat = NULL; // Define mat como NULL após liberar
-                printf("Matriz liberada com sucesso!\n");
                 break;
 
             case 9:
