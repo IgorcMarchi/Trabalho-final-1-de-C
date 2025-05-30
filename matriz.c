@@ -21,15 +21,15 @@ typedef struct matriz{
 void menu() {
     printf("--------------------------------------------------\n");
     printf ("Menu : \n");
-    printf ("Criar Matriz\n"); //Fizemo
-    printf ("Inserir Elemento\n");
-    printf ("Remover Elemento\n");
-    printf ("Inserir dados em um valor especifico\n");
-    printf ("COnsultar valor especifico\n");
-    printf ("Buscar um valor qual quer:\n ");
-    printf ("Imprimir Valor dos 4 vizinhos de (x, y):\n ");
-    printf ("Liberar matriz: \n"); //Fizemos
-    printf ("Sair..\n");
+    printf ("1- Criar Matriz\n"); //Fizemo
+    printf ("2- Inserir Elemento\n"); //Fizemos
+    printf ("3- Remover Elemento\n");
+    printf ("4- Inserir dados em um valor especifico\n");
+    printf ("5- Consultar posicao: \n");
+    printf ("6- Buscar um valor qual quer:\n ");
+    printf ("7- Imprimir Valor dos 4 vizinhos de (x, y):\n ");
+    printf ("8- Liberar matriz: \n"); //Fizemos
+    printf ("9- Sair..\n");
     printf("--------------------------------------------------\n");
 }
 
@@ -112,4 +112,12 @@ int inserir_elemento(Mat *mat, int linha, int coluna, int valor) {
     int idx = linha * mat->coluna + coluna;
     mat->elementos[idx]->valor = valor;
     return 1; // Sucesso
+}
+
+int consultar_posicao(Mat *mat, int linha, int coluna){
+    if (mat == NULL || mat->elementos == NULL) return 0;
+    if (linha < 0 || linha >= mat->linha || coluna < 0 || coluna >= mat->coluna) return 0;
+
+    int idx= linha * mat->coluna + coluna;
+    return mat->elementos[idx]->valor;
 }

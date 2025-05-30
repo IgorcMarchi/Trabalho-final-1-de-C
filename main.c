@@ -5,7 +5,7 @@
 #include "matriz.c"
 
 int main() {
-int opcao;
+int opcao, linha, coluna, valor;
     Mat *mat = NULL;
 
    do{
@@ -25,7 +25,6 @@ int opcao;
                 break;
 
             case 2: {
-                int linha, coluna, valor;
                 printf("Fale a posicao (linha e coluna) do elemento: ");
                 scanf("%d %d", &linha, &coluna);
                 printf ("\nAgora digite o valor do elemento: ");
@@ -43,7 +42,9 @@ int opcao;
                 break;
 
             case 5:
-                printf("Opcao 5 selecionada.\n");
+                printf("Fale a posicao (linha e coluna) do elemento: ");
+                scanf("%d %d", &linha, &coluna);
+                printf ("%d", consultar_posicao(mat, linha, coluna));
                 break;
 
             case 6:
