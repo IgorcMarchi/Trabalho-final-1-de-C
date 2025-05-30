@@ -7,7 +7,7 @@ Mat *cria_matriz(int linhas, int colunas) ;
 void liberar_matriz(Mat *mat);
 int inserir_elemento(Mat *mat, int linha, int coluna, int valor);
 int consultar_posicao(Mat *mat, int linha, int coluna);
-
+void imprimir_vizinhos(Mat *mat, int linha, int coluna);
 
 
 #endif

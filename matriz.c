@@ -19,7 +19,7 @@ typedef struct matriz{
 }Mat;
 
 void menu() {
-    printf("--------------------------------------------------\n");
+    printf("\n--------------------------------------------------\n");
     printf ("Menu : \n");
     printf ("1- Criar Matriz\n"); //Fizemo
     printf ("2- Inserir Elemento\n"); //Fizemos
@@ -38,52 +38,66 @@ void menu() {
 Mat *cria_matriz(int linhas, int colunas) {
     Mat *mat = (Mat*)malloc(sizeof(Mat));
     if (mat == NULL) {
-        return NULL; // Falha ao alocar memória
+        return NULL; // Falha ao alocar memória para a estrutura da matriz
     }
+
     mat->linha = linhas;
     mat->coluna = colunas;
     mat->inicio = NULL;
 
+    // Aloca o vetor de ponteiros para os elementos
     Elemento **no = (Elemento**)malloc(linhas * colunas * sizeof(Elemento*));
     if (no == NULL) {
-        free(mat); // Libera a memória alocada para Mat
-        return 0; // Falha ao alocar memória para os elementos
+        free(mat);
+        return NULL;
     }
 
-    for(int l = 0; l < linhas; l++) {
-        for(int c = 0; c < colunas; c++) {
-           no[l * colunas + c] = (Elemento*)malloc(sizeof(Elemento));
-           if(no[l * colunas + c] == NULL) {
-                // Se falhar, libera a memória já alocada
-                for(int i = 0; i < l * colunas + c; i++) {
+    // Etapa 1: Alocar todos os elementos
+    for (int l = 0; l < linhas; l++) {
+        for (int c = 0; c < colunas; c++) {
+            int idx = l * colunas + c;
+            no[idx] = (Elemento*)malloc(sizeof(Elemento));
+            if (no[idx] == NULL) {
+                // Libera tudo o que foi alocado até agora
+                for (int i = 0; i < idx; i++) {
                     free(no[i]);
                 }
                 free(no);
                 free(mat);
-                return NULL; // Falha ao alocar memória para um elemento
+                return NULL;
             }
-            no[l * colunas + c]->valor = 0; // Inicializa o valor do elemento
-            no[l * colunas + c]->prox = NULL;
-            no[l * colunas + c]->ant = NULL;
-            no[l * colunas + c]->cima = NULL;
-            no[l * colunas + c]->baixo = NULL;
-
-            if(c > 0)
-                no[l * colunas + c]->ant = no[l * colunas + (c-1)];
-            if(c < colunas - 1)
-                no[l * colunas + c]->prox = no[l * colunas + (c+1)];
-            if(l > 0)
-                no[l * colunas + c]->cima = no[(l-1) * colunas + c];
-            if(l < linhas - 1)
-                no[l * colunas + c]->baixo = no[(l+1) * colunas + c];
+            // Inicializa o elemento
+            no[idx]->valor = 0;
+            no[idx]->prox = NULL;
+            no[idx]->ant = NULL;
+            no[idx]->cima = NULL;
+            no[idx]->baixo = NULL;
         }
     }
-    mat->inicio = no[0]; // Atribui o ponteiro de início da matriz
-    // Na cria_matriz, salve o ponteiro:
+
+    // Etapa 2: Fazer ligações entre os elementos
+    for (int l = 0; l < linhas; l++) {
+        for (int c = 0; c < colunas; c++) {
+            int idx = l * colunas + c;
+            Elemento *elem = no[idx];
+
+            if (c > 0)
+                elem->ant = no[l * colunas + (c - 1)];
+            if (c < colunas - 1)
+                elem->prox = no[l * colunas + (c + 1)];
+            if (l > 0)
+                elem->cima = no[(l - 1) * colunas + c];
+            if (l < linhas - 1)
+                elem->baixo = no[(l + 1) * colunas + c];
+        }
+    }
+
+    mat->inicio = no[0];
     mat->elementos = no;
 
     return mat;
 }
+
 
 //Função para liberar memoria da matriz
 
@@ -120,4 +134,32 @@ int consultar_posicao(Mat *mat, int linha, int coluna){
 
     int idx= linha * mat->coluna + coluna;
     return mat->elementos[idx]->valor;
+}
+
+void imprimir_vizinhos(Mat *mat, int linha, int coluna){
+    if (mat == NULL || mat->elementos == NULL) return;
+    if (linha < 0 || linha >= mat->linha || coluna < 0 || coluna >= mat->coluna) return;
+
+    int idx = linha * mat->coluna + coluna;
+    Elemento *elem = mat->elementos[idx];
+    
+    if (elem->prox != NULL)
+        printf("Direita: %d\n", elem->prox->valor);
+    else
+        printf("Direita: NULO\n");
+
+    if (elem->ant != NULL)
+        printf("Esquerda: %d\n", elem->ant->valor);
+    else
+        printf("Esquerda: NULO\n");
+
+    if (elem->cima != NULL)
+        printf("Cima: %d\n", elem->cima->valor);
+    else
+        printf("Cima: NULO\n");
+
+    if (elem->baixo != NULL)
+        printf("Baixo: %d\n", elem->baixo->valor);
+    else
+        printf("Baixo: NULO\n");
 }

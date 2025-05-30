@@ -52,7 +52,10 @@ int opcao, linha, coluna, valor;
                 break;
 
             case 7:
-                printf("Opcao 7 selecionada.\n");
+                printf("Fale a posicao (linha e coluna) do elemento: ");
+                scanf("%d %d", &linha, &coluna);
+                imprimir_vizinhos(mat, linha, coluna);
+    
                 break;
 
             case 8:
