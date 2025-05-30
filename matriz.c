@@ -82,17 +82,16 @@ Mat *cria_matriz(int linhas, int colunas) {
     return mat;
 }
 void liberar_matriz(Mat *mat) {
-    if (mat == NULL) 
-        return 0;
-
+    if (mat == NULL){
+        printf("Matriz ja liberada ou nao existe!\n");
+        return;
+    }
     Elemento *no = mat->inicio;
-    Elemento *atual = NULL;
-    Elemento *aux = NULL;
 
     for(int l = 0; l < mat->linha; l++) {
-        atual = no;
+        Elemento* atual = no;
         for(int c = 0; c < mat->coluna; c++) {
-            aux = no->prox;
+            Elemento *aux = atual->prox;
             free(atual); // Libera o elemento atual
             atual = aux; // Avança para o próximo elemento
         }
