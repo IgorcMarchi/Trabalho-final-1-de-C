@@ -55,7 +55,7 @@ int opcao;
                 break;
 
             case 9:
-                printf("Saindo...\n");
+                printf("Saindo.....\n");
                 break;
 
             default:
