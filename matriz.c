@@ -15,6 +15,7 @@ typedef struct matriz{
     int linha;
     int coluna;
     Elemento* inicio;
+    Elemento **elementos; // Vetor de ponteiros para os elementos
 }Mat;
 
 void menu() {
@@ -78,27 +79,26 @@ Mat *cria_matriz(int linhas, int colunas) {
         }
     }
     mat->inicio = no[0]; // Atribui o ponteiro de início da matriz
+    // Na cria_matriz, salve o ponteiro:
+    mat->elementos = no;
 
     return mat;
 }
+
+
+
 void liberar_matriz(Mat *mat) {
     if (mat == NULL){
-        printf("Matriz ja liberada ou nao existe!\n");
+        printf("Matriz já liberada ou não existe!\n");
         return;
     }
-    Elemento *no = mat->inicio;
 
-    for(int l = 0; l < mat->linha; l++) {
-        Elemento* atual = no;
-        for(int c = 0; c < mat->coluna; c++) {
-            Elemento *aux = atual->prox;
-            free(atual); // Libera o elemento atual
-            atual = aux; // Avança para o próximo elemento
-        }
-        if(no != NULL)
-            no = no->baixo; // Avança para a próxima linha
+    // Libere todos os elementos
+    for (int i = 0; i < mat->linha * mat->coluna; i++) {
+        free(mat->elementos[i]);
     }
+    free(mat->elementos); // Libere o vetor de ponteiros
 
-    free(mat); // Libera a memória da estrutura Mat
+    free(mat); // Libere a struct Mat
     printf("Matriz liberada com sucesso!\n");
 }
