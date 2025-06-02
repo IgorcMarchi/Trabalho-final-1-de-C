@@ -127,12 +127,18 @@ int inserir_elemento(Mat *mat, int linha, int coluna, int valor) {
     return 1; // Sucesso
 }
 
-int consultar_posicao(Mat *mat, int linha, int coluna){
-    if (mat == NULL || mat->elementos == NULL) return 0;
-    if (linha < 0 || linha >= mat->linha || coluna < 0 || coluna >= mat->coluna) return 0;
+void consultar_posicao(Mat *mat, int linha, int coluna){
+    if (mat == NULL || mat->elementos == NULL) return;
+    if (linha < 0 || linha >= mat->linha || coluna < 0 || coluna >= mat->coluna) return;
 
     int idx= linha * mat->coluna + coluna;
-    return mat->elementos[idx]->valor;
+    if(mat->elementos[idx] == 0) 
+        return ; // Verifica se o elemento existe
+    if(mat->elementos[idx]->valor == 0) {
+        printf("Valor nao inserido na posicao (%d, %d)\n", linha, coluna);
+    }
+    else
+        printf("Valor na posicao (%d, %d): %d\n", linha, coluna, mat->elementos[idx]->valor);
 }
 
 void imprimir_vizinhos(Mat *mat, int linha, int coluna){

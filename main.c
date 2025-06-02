@@ -57,7 +57,8 @@ int opcao, linha, coluna, valor;
                 }
                 printf("Fale a posicao (linha e coluna) do elemento: ");
                 scanf("%d %d", &linha, &coluna);
-                printf ("%d \n", consultar_posicao(mat, linha, coluna));
+                consultar_posicao(mat, linha, coluna);
+                printf("--------------------------------------------------\n");
                 system("pause");
                 system("cls");
                 break;
