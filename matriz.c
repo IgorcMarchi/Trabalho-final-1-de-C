@@ -28,7 +28,8 @@ void menu() {
     printf ("4- Buscar um valor qual quer:\n"); //fizemos
     printf ("5- Imprimir Valor dos 4 vizinhos de (x, y):\n"); // Fizemos
     printf ("6- Liberar matriz: \n"); //Fizemos
-    printf ("7- Sair..\n");
+    printf ("7- Imprimir Matriz: \n");
+    printf ("8- Sair..\n");
     printf("--------------------------------------------------\n");
 }
 
@@ -193,4 +194,20 @@ void buscar_valor(Mat *mat, int valor) {
     }
     if(contador == 0)
         printf("Valor %d nao encontrado na matriz.\n", valor);
+}
+
+void imprimir_matriz(Mat *mat) {
+    if (mat == NULL || mat->elementos == NULL) {
+        printf("Matriz nao existe ou nao foi criada.\n");
+        return;
+    }
+
+    printf("Matriz %dx%d:\n", mat->linha, mat->coluna);
+    for (int l = 0; l < mat->linha; l++) {
+        for (int c = 0; c < mat->coluna; c++) {
+            int idx = l * mat->coluna + c;
+            printf("%d ", mat->elementos[idx]->valor);
+        }
+        printf("\n");
+    }
 }

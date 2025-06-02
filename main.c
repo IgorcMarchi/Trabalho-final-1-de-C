@@ -104,8 +104,11 @@ int opcao, linha, coluna, valor;
                 system("pause");
                 system("cls");
                 break;
-
             case 7:
+                imprimir_matriz(mat);
+                break;
+
+            case 8:
                 printf("Saindo.....\n");
                 break;
 
