@@ -20,14 +20,15 @@ typedef struct matriz{
 
 void menu() {
     printf("\n--------------------------------------------------\n");
-    printf ("Menu : \n");
+    printf ("                     MENU: \n");
+    printf("--------------------------------------------------\n");
     printf ("1- Criar Matriz\n"); //Fizemo
     printf ("2- Inserir Elemento\n"); //Fizemos
     printf ("3- Remover Elemento\n");
     printf ("4- Inserir dados em um valor especifico\n");
     printf ("5- Consultar posicao: \n");
-    printf ("6- Buscar um valor qual quer:\n ");
-    printf ("7- Imprimir Valor dos 4 vizinhos de (x, y):\n ");
+    printf ("6- Buscar um valor qual quer:\n");
+    printf ("7- Imprimir Valor dos 4 vizinhos de (x, y):\n");
     printf ("8- Liberar matriz: \n"); //Fizemos
     printf ("9- Sair..\n");
     printf("--------------------------------------------------\n");
@@ -144,22 +145,34 @@ void imprimir_vizinhos(Mat *mat, int linha, int coluna){
     Elemento *elem = mat->elementos[idx];
     
     if (elem->prox != NULL)
-        printf("Direita: %d\n", elem->prox->valor);
+        if(elem->prox->valor == 0)
+            printf("Direita: varlor nao inserido\n");
+        else
+            printf("Direita: %d\n", elem->prox->valor);
     else
         printf("Direita: NULO\n");
 
     if (elem->ant != NULL)
-        printf("Esquerda: %d\n", elem->ant->valor);
+        if(elem->ant->valor == 0)
+            printf("Esuqerda: varlor nao inserido\n");
+        else
+            printf("Esquerda: %d\n", elem->ant->valor);
     else
         printf("Esquerda: NULO\n");
 
     if (elem->cima != NULL)
-        printf("Cima: %d\n", elem->cima->valor);
+        if(elem->cima->valor == 0)
+            printf("Cima: varlor nao inserido\n");
+        else
+            printf("Cima: %d\n", elem->cima->valor);
     else
         printf("Cima: NULO\n");
 
     if (elem->baixo != NULL)
-        printf("Baixo: %d\n", elem->baixo->valor);
+        if(elem->baixo->valor == 0)
+            printf("Baixo: varlor nao inserido\n");
+        else
+            printf("Baixo: %d\n", elem->baixo->valor);
     else
         printf("Baixo: NULO\n");
 }
