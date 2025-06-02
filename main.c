@@ -34,7 +34,8 @@ int opcao, linha, coluna, valor;
                 break;
             }
             case 3:
-                printf("Opcao 3 selecionada.\n");
+                printf("Fale a posicao (linha e coluna) do elemento: ");
+                scanf("%d %d", &linha, &coluna);
                 break;
 
             case 4:
@@ -48,7 +49,10 @@ int opcao, linha, coluna, valor;
                 break;
 
             case 6:
-                printf("Opcao 6 selecionada.\n");
+                printf("Digite o valor a ser buscado: ");
+                scanf("%d", &valor);
+                printf("Buscando o valor %d...\n", valor);
+                buscar_valor(mat, valor);
                 break;
 
             case 7:
