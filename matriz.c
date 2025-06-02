@@ -152,7 +152,7 @@ void imprimir_vizinhos(Mat *mat, int linha, int coluna){
 
     if (elem->ant != NULL)
         if(elem->ant->valor == 0)
-            printf("Esuqerda: varlor nao inserido\n");
+            printf("Esquerda: valor nao inserido\n");
         else
             printf("Esquerda: %d\n", elem->ant->valor);
     else

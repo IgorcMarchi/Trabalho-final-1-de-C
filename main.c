@@ -16,58 +16,95 @@ int opcao, linha, coluna, valor;
         
         switch (opcao) {
             case 1:
-                mat = cria_matriz(3,4);
+                printf ("--------------------------------------------------\n");
+                printf ("Quantas linhas e colunas deseja criar? \n");
+                scanf("%d %d", &linha, &coluna);
+                printf ("--------------------------------------------------\n");
+
+                mat = cria_matriz(linha, coluna);
+
                 if (mat == NULL) {
                     printf("Erro ao criar a matriz.\n");
                     return 1;
                 }
                 printf("Matriz criada com sucesso!\n");
+                printf ("--------------------------------------------------\n");
+                system("pause");
+                system("cls");
                 break;
 
             case 2: {
+                if (mat == NULL) {
+                    printf("Matriz ainda nao foi criada. Por favor, crie uma matriz primeiro.\n");
+                    break;
+                }
+
                 printf("Fale a posicao (linha e coluna) do elemento: ");
                 scanf("%d %d", &linha, &coluna);
                 printf ("\nAgora digite o valor do elemento: ");
                 scanf("%d", &valor);
                 inserir_elemento(mat, linha, coluna, valor);
                 printf("Elemento inserido com sucesso!\n");
+                printf ("--------------------------------------------------\n");
+                system("pause");
+                system("cls");
                 break;
             }
             case 3:
+                if (mat == NULL) {
+                    printf("Matriz ainda nao foi criada. Por favor, crie uma matriz primeiro.\n");
+                    break;
+                }
                 printf("Fale a posicao (linha e coluna) do elemento: ");
                 scanf("%d %d", &linha, &coluna);
+                printf ("%d \n", consultar_posicao(mat, linha, coluna));
+                system("pause");
+                system("cls");
                 break;
 
             case 4:
-                printf("Opcao 4 selecionada.\n");
-                break;
+                if (mat == NULL) {
+                    printf("Matriz ainda nao foi criada. Por favor, crie uma matriz primeiro.\n");
+                    break;
+                }
 
-            case 5:
-                printf("Fale a posicao (linha e coluna) do elemento: ");
-                scanf("%d %d", &linha, &coluna);
-                printf ("%d", consultar_posicao(mat, linha, coluna));
-                break;
-
-            case 6:
                 printf("Digite o valor a ser buscado: ");
                 scanf("%d", &valor);
                 printf("Buscando o valor %d...\n", valor);
                 buscar_valor(mat, valor);
+                printf ("--------------------------------------------------\n");
+                system("pause");
+                system("cls");
+                break;
+
+            case 5:
+                if (mat == NULL) {
+                    printf("Matriz ainda nao foi criada. Por favor, crie uma matriz primeiro.\n");
+                    break;
+                }
+
+                printf("Fale a posicao (linha e coluna) do elemento: ");
+                scanf("%d %d", &linha, &coluna);
+                printf ("-------------------------------------------------\n");
+                imprimir_vizinhos(mat, linha, coluna);
+                printf ("-------------------------------------------------\n");
+                system("pause");
+                system("cls");
+                break;
+
+            case 6:
+                if (mat == NULL) {
+                    printf("Matriz ainda nao foi criada. Por favor, crie uma matriz primeiro.\n");
+                    break;
+                }
+                printf("Liberando a matriz...\n");
+                liberar_matriz(mat);
+                mat = NULL; // Define mat como NULL após liberar
+                system("pause");
+                system("cls");
                 break;
 
             case 7:
-                printf("Fale a posicao (linha e coluna) do elemento: ");
-                scanf("%d %d", &linha, &coluna);
-                imprimir_vizinhos(mat, linha, coluna);
-    
-                break;
-
-            case 8:
-                liberar_matriz(mat);
-                mat = NULL; // Define mat como NULL após liberar
-                break;
-
-            case 9:
                 printf("Saindo.....\n");
                 break;
 
