@@ -105,7 +105,15 @@ int opcao, linha, coluna, valor;
                 system("cls");
                 break;
             case 7:
+                if (mat == NULL) {
+                    printf("Matriz ainda nao foi criada. Por favor, crie uma matriz primeiro.\n");
+                    break;
+                }
+                printf ("-------------------------------------------------\n");
                 imprimir_matriz(mat);
+                printf ("-------------------------------------------------\n");
+                system("pause");
+                system("cls");
                 break;
 
             case 8:

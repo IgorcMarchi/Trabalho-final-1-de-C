@@ -206,7 +206,10 @@ void imprimir_matriz(Mat *mat) {
     for (int l = 0; l < mat->linha; l++) {
         for (int c = 0; c < mat->coluna; c++) {
             int idx = l * mat->coluna + c;
-            printf("%d ", mat->elementos[idx]->valor);
+            if(mat->elementos[idx]->valor == 0)
+                printf(" X ");
+            else
+            printf(" %d ", mat->elementos[idx]->valor);
         }
         printf("\n");
     }
