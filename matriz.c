@@ -28,8 +28,10 @@ void menu() {
     printf ("4- Buscar um valor qual quer:\n"); //fizemos
     printf ("5- Imprimir Valor dos 4 vizinhos de (x, y):\n"); // Fizemos
     printf ("6- Liberar matriz: \n"); //Fizemos
-    printf ("7- Imprimir Matriz: \n");
-    printf ("8- Sair..\n");
+    printf ("7- Imprimir Matriz: \n"); // FEITO
+    printf ("8- Remover dado de uma posicao especifica: \n"); //FEITO
+    printf ("9- Limpar dados da matriz: \n"); //FEITO
+    printf ("10- Sair..\n");
     printf("--------------------------------------------------\n");
 }
 
@@ -120,8 +122,10 @@ void liberar_matriz(Mat *mat) {
 
 // Insere um valor na posição (linha, coluna) da matriz
 int inserir_elemento(Mat *mat, int linha, int coluna, int valor) {
-    if (mat == NULL) return 0;
-    if (linha < 0 || linha >= mat->linha || coluna < 0 || coluna >= mat->coluna) return 0;
+    if (mat == NULL) 
+        return 0;
+    if (linha < 0 || linha >= mat->linha || coluna < 0 || coluna >= mat->coluna)
+        return 0;
 
     int idx = linha * mat->coluna + coluna;
     mat->elementos[idx]->valor = valor;
@@ -129,9 +133,12 @@ int inserir_elemento(Mat *mat, int linha, int coluna, int valor) {
 }
 
 void consultar_posicao(Mat *mat, int linha, int coluna){
-    if (mat == NULL || mat->elementos == NULL) return;
-    if (linha < 0 || linha >= mat->linha || coluna < 0 || coluna >= mat->coluna) return;
-
+    if (mat == NULL || mat->elementos == NULL) 
+        return;
+    if (linha < 0 || linha >= mat->linha || coluna < 0 || coluna >= mat->coluna){
+        printf("Posicao (%d, %d) fora dos limites da matriz.\n", linha, coluna);
+        return;
+    }
     int idx= linha * mat->coluna + coluna;
     if(mat->elementos[idx] == 0) 
         return ; // Verifica se o elemento existe
@@ -143,8 +150,12 @@ void consultar_posicao(Mat *mat, int linha, int coluna){
 }
 
 void imprimir_vizinhos(Mat *mat, int linha, int coluna){
-    if (mat == NULL || mat->elementos == NULL) return;
-    if (linha < 0 || linha >= mat->linha || coluna < 0 || coluna >= mat->coluna) return;
+    if (mat == NULL || mat->elementos == NULL) 
+        return;
+    if (linha < 0 || linha >= mat->linha || coluna < 0 || coluna >= mat->coluna){
+        printf("Posicao (%d, %d) fora dos limites da matriz.\n", linha, coluna);
+        return;
+    }
 
     int idx = linha * mat->coluna + coluna;
     Elemento *elem = mat->elementos[idx];
@@ -213,4 +224,37 @@ void imprimir_matriz(Mat *mat) {
         }
         printf("\n");
     }
+}
+
+void remover_dado_posicao_especifica(Mat *mat, int linha, int coluna){
+    if (mat == NULL || mat->elementos == NULL) return;
+    if (linha < 0 || linha >= mat->linha || coluna < 0 || coluna >= mat->coluna){
+        printf("Posicao (%d, %d) fora dos limites da matriz.\n", linha, coluna);
+        return;
+    }
+    int idx= linha * mat->coluna + coluna;
+    if(mat->elementos[idx] == 0) 
+        return ; // Verifica se o elemento existe
+    if(mat->elementos[idx]->valor == 0) {
+        printf("A posição (%d, %d), nao existe valor inserido!\n", linha, coluna);
+    }
+    else{
+        mat->elementos[idx]->valor = 0; // Zera o valor do elemento
+        printf("Valor na posicao (%d, %d), foi apagado!\n", linha, coluna);
+    }
+}
+
+int limpar_dados_matriz(Mat *mat) {
+    if (mat == NULL || mat->elementos == NULL) {
+        return 0;
+    }
+
+    for (int l = 0; l < mat->linha; l++) {
+        for (int c = 0; c < mat->coluna; c++) {
+            int idx = l * mat->coluna + c;
+            if(mat->elementos[idx]->valor != 0)
+                mat->elementos[idx]->valor = 0; // Zera o valor do elemento
+        }
+    }
+    return 1; // Sucesso
 }

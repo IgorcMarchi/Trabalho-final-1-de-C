@@ -43,8 +43,11 @@ int opcao, linha, coluna, valor;
                 scanf("%d %d", &linha, &coluna);
                 printf ("\nAgora digite o valor do elemento: ");
                 scanf("%d", &valor);
-                inserir_elemento(mat, linha, coluna, valor);
-                printf("Elemento inserido com sucesso!\n");
+                if(inserir_elemento(mat, linha, coluna, valor)) {
+                    printf("Valor %d inserido na posicao (%d, %d).\n", valor, linha, coluna);
+                } else {
+                    printf("Erro ao inserir o valor na posicao (%d, %d).\n", linha, coluna);
+                }
                 printf ("--------------------------------------------------\n");
                 system("pause");
                 system("cls");
@@ -115,8 +118,35 @@ int opcao, linha, coluna, valor;
                 system("pause");
                 system("cls");
                 break;
-
+            
             case 8:
+                if (mat == NULL) {
+                    printf("Matriz ainda nao foi criada. Por favor, crie uma matriz primeiro.\n");
+                    break;
+                }
+                printf("Fale a posicao (linha e coluna) do elemento: ");
+                scanf("%d %d", &linha, &coluna);
+                printf ("-------------------------------------------------\n");
+                remover_dado_posicao_especifica(mat, linha, coluna);
+                printf ("-------------------------------------------------\n");
+                system("pause");
+                system("cls");
+                break;
+            case 9:
+                if (mat == NULL) {
+                    printf("Matriz ainda nao foi criada. Por favor, crie uma matriz primeiro.\n");
+                    break;
+                }
+                printf("Limpando todos os dados da matriz...\n");
+                if (limpar_dados_matriz(mat)) {
+                    printf("Todos os dados foram limpos com sucesso!\n");
+                } else {
+                    printf("Erro ao limpar os dados da matriz.\n");
+                }
+                system("pause");
+                system("cls");
+                break;
+            case 10:
                 printf("Saindo.....\n");
                 break;
 
@@ -124,6 +154,6 @@ int opcao, linha, coluna, valor;
                 printf("Opcao invalida.\n");
                 break;
         }
-   }while(opcao != 9);
+   }while(opcao != 10);
     return 0;
 }
