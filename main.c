@@ -36,6 +36,8 @@ int opcao, linha, coluna, valor;
             case 2: {
                 if (mat == NULL) {
                     printf("Matriz ainda nao foi criada. Por favor, crie uma matriz primeiro.\n");
+                    system("pause");
+                    system("cls");
                     break;
                 }
 
@@ -56,6 +58,8 @@ int opcao, linha, coluna, valor;
             case 3:
                 if (mat == NULL) {
                     printf("Matriz ainda nao foi criada. Por favor, crie uma matriz primeiro.\n");
+                    system("pause");
+                    system("cls");
                     break;
                 }
                 printf("Fale a posicao (linha e coluna) do elemento: ");
@@ -69,6 +73,8 @@ int opcao, linha, coluna, valor;
             case 4:
                 if (mat == NULL) {
                     printf("Matriz ainda nao foi criada. Por favor, crie uma matriz primeiro.\n");
+                    system("pause");
+                    system("cls");
                     break;
                 }
 
@@ -84,6 +90,8 @@ int opcao, linha, coluna, valor;
             case 5:
                 if (mat == NULL) {
                     printf("Matriz ainda nao foi criada. Por favor, crie uma matriz primeiro.\n");
+                    system("pause");
+                    system("cls");
                     break;
                 }
 
@@ -99,6 +107,8 @@ int opcao, linha, coluna, valor;
             case 6:
                 if (mat == NULL) {
                     printf("Matriz ainda nao foi criada. Por favor, crie uma matriz primeiro.\n");
+                    system("pause");
+                    system("cls");
                     break;
                 }
                 printf("Liberando a matriz...\n");
@@ -110,6 +120,8 @@ int opcao, linha, coluna, valor;
             case 7:
                 if (mat == NULL) {
                     printf("Matriz ainda nao foi criada. Por favor, crie uma matriz primeiro.\n");
+                    system("pause");
+                    system("cls");
                     break;
                 }
                 printf ("-------------------------------------------------\n");
@@ -122,6 +134,8 @@ int opcao, linha, coluna, valor;
             case 8:
                 if (mat == NULL) {
                     printf("Matriz ainda nao foi criada. Por favor, crie uma matriz primeiro.\n");
+                    system("pause");
+                    system("cls");
                     break;
                 }
                 printf("Fale a posicao (linha e coluna) do elemento: ");
@@ -135,6 +149,8 @@ int opcao, linha, coluna, valor;
             case 9:
                 if (mat == NULL) {
                     printf("Matriz ainda nao foi criada. Por favor, crie uma matriz primeiro.\n");
+                    system("pause");
+                    system("cls");
                     break;
                 }
                 printf("Limpando todos os dados da matriz...\n");
@@ -152,6 +168,8 @@ int opcao, linha, coluna, valor;
 
             default:
                 printf("Opcao invalida.\n");
+                system("pause");
+                system("cls");
                 break;
         }
    }while(opcao != 10);

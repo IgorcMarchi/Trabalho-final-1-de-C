@@ -236,7 +236,7 @@ void remover_dado_posicao_especifica(Mat *mat, int linha, int coluna){
     if(mat->elementos[idx] == 0) 
         return ; // Verifica se o elemento existe
     if(mat->elementos[idx]->valor == 0) {
-        printf("A posição (%d, %d), nao existe valor inserido!\n", linha, coluna);
+        printf("A posicao (%d, %d), ja nao existe valor inserido!\n", linha, coluna);
     }
     else{
         mat->elementos[idx]->valor = 0; // Zera o valor do elemento
