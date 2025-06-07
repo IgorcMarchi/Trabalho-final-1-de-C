@@ -25,7 +25,7 @@ void menu() {
     printf ("1- Criar Matriz\n"); //Fizemo
     printf ("2- Inserir Elemento\n"); //Fizemos
     printf ("3- Consultar posicao: \n"); //Fizemos
-    printf ("4- Buscar um valor qual quer:\n"); //fizemos
+    printf ("4- Buscar um valor qualquer:\n"); //fizemos
     printf ("5- Imprimir Valor dos 4 vizinhos de (x, y):\n"); // Fizemos
     printf ("6- Liberar matriz: \n"); //Fizemos
     printf ("7- Imprimir Matriz: \n"); // FEITO
